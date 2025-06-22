@@ -4,10 +4,8 @@
 
 <template>
   <body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-</body>
+    <router-view/>
+  </body>
 </template>
 
 <style scoped>
