@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "@/common/config/config.js";
+import {API_URL} from "@/common/config/config.js";
 import JwtService from "@/common/services/jwt.service.js";
 
 const ApiService = {
@@ -21,6 +21,10 @@ const ApiService = {
 
     setHeader() {
         axios.defaults.headers.common["Authorization"] = `Token ${JwtService.getToken()}`;
+    },
+
+    clearHeader() {
+        delete axios.defaults.headers.common["Authorization"];
     },
 
     query(resource, params) {
