@@ -12,4 +12,21 @@ export const destroyToken = () => {
     window.localStorage.removeItem(ID_TOKEN_KEY);
 };
 
-export default { getToken, saveToken, destroyToken };
+// Function to parse JWT and extract payload
+function parseJwt(token) {
+    try {
+        const payload = token.split('.')[1];
+        return JSON.parse(atob(payload));
+    } catch {
+        return null;
+    }
+}
+
+// Function to get user ID from JWT
+export const getUserId = () => {
+    const token = getToken();
+    const data = token && parseJwt(token);
+    return data?.sub || null;
+};
+
+export default { getToken, saveToken, destroyToken, getUserId };
