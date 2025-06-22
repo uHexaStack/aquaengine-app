@@ -1,5 +1,23 @@
-import { createApp } from 'vue'
 import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
-createApp(App).mount('#app')
+import App from './App.vue'
+import router from "./router";
+import i18n from '@/common/i18n'
+import ApiService from "@/common/services/api.service.js";
+
+ApiService.init();
+
+const pinia = createPinia()
+const app = createApp(App);
+
+app.use(i18n)
+app.use(pinia)
+app.use(router);
+
+app.config.errorHandler = (err, vm, info) => {
+    console.error('Global error:', info, err)
+}
+
+app.mount("#app");
