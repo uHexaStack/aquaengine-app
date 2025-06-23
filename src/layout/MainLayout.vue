@@ -30,8 +30,8 @@ export default {
 </script>
 
 <template>
-  <header class="w-full shadow" style="background-color: lightblue;">
-    <nav class="max-w-[1200px] mx-auto py-2.5 px-8 flex items-center justify-between gap-4 relative">
+  <header class="w-full shadow" style="background-color: lightblue; z-index: 1000; position: relative;">
+    <nav class="max-w-[1200px] mx-auto py-1.5 px-8 flex items-center justify-between gap-4 relative">
       <router-link to="/dashboard" class="toolbar__logo">
         <img src="@/assets/images/aqua-engine-logo.webp" alt="Aqua‑Engine logo" class="h-[85px]"/>
       </router-link>
@@ -75,7 +75,7 @@ export default {
       </transition>
     </nav>
   </header>
-  <main class="w-full max-w-4xl mx-auto p-8">
+  <main class="w-full max-w-6xl mx-auto py-4">
     <router-view/>
   </main>
 </template>
@@ -101,14 +101,4 @@ export default {
   border-radius: 50%;
 }
 
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-slide-enter-from,
-.fade-slide-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
-}
 </style>
