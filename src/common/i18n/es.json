@@ -1,3 +1,11 @@
 {
-  "logout": "Cerrar sesión"
+  "logout": "Cerrar sesión",
+
+  "home": {
+    "inventory": "Inventario",
+    "orders": "Órdenes",
+    "payments": "Pagos",
+    "notifications": "Notificaciones",
+    "profile": "Perfil"
+  }
 }

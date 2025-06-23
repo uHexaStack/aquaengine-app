@@ -1,3 +1,11 @@
 {
-  "logout": "Logout"
+  "logout": "Logout",
+
+  "home": {
+    "inventory": "Inventory",
+    "orders": "Orders",
+    "payments": "Payments",
+    "notifications": "Notifications",
+    "profile": "Profile"
+  }
 }
