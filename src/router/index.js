@@ -4,11 +4,21 @@ import { useAuthStore } from "@/features/auth/application/stores/useAuthStore.js
 import authRoutes from '@/features/auth/presentation/router.js'
 import homeRoutes from '@/features/home/presentation/router.js'
 
+import MainLayout from "@/layout/MainLayout.vue";
+
 const routes = [
-    { path: '/', redirect: '/auth/sign-in' },
     ...authRoutes,
-    ...homeRoutes,
-    { path: '/:catchAll(.*)*', redirect: '/' }
+
+    {
+        path: '/',
+        component: MainLayout,
+        meta: { requiresAuth: true },
+        children: [
+            ...homeRoutes,
+        ]
+    },
+
+    { path: '/:catchAll(.*)*', redirect: '/auth/sign-in' }
 ];
 
 const router = createRouter({
