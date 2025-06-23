@@ -7,5 +7,27 @@
     "payments": "Pagos",
     "notifications": "Notificaciones",
     "profile": "Perfil"
+  },
+
+  "inventory": {
+    "reload": "Recargar",
+    "newItem": "Nuevo ítem",
+    "name": "Nombre",
+    "price": "Precio",
+    "quantity": "Cantidad",
+    "quantityOnHand": "Cantidad Disponible",
+    "initialQuantity": "Cantidad Inicial",
+    "threshold": "Umbral",
+    "actions": "Acciones",
+    "lowStock": "¡Stock Bajo!",
+    "adjust": "Ajustar",
+    "reserve": "Reservar",
+    "release": "Liberar",
+    "empty": "No se encontraron ítems"
+  },
+
+  "common": {
+    "cancel": "Cancelar",
+    "save": "Guardar"
   }
 }
