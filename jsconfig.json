@@ -5,7 +5,8 @@
       "@/*": ["*"],
       "@common/*": ["common/*"],
       "@features/*": ["features/*"],
-      "@layouts/*": ["layouts/*"]
+      "@layouts/*": ["layouts/*"],
+      "@inventory/*": ["features/inventory/*"]
     }
   },
   "include": ["src"]
