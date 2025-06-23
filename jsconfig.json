@@ -3,8 +3,8 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@core/*": ["core/*"],
-      "@presentation/*": ["presentation/*"]
+      "@common/*": ["common/*"],
+      "@features/*": ["features/*"]
     }
   },
   "include": ["src"]
