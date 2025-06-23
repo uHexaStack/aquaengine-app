@@ -75,7 +75,7 @@ export default {
       </transition>
     </nav>
   </header>
-  <main class="w-full max-w-4xl">
+  <main class="w-full max-w-4xl mx-auto p-8">
     <router-view/>
   </main>
 </template>
