@@ -11,23 +11,23 @@
 
   "inventory": {
     "reload": "Recargar",
-    "newItem": "Nuevo ítem",
+    "newItem": "Nuevo Producto",
+    "filterByName": "Filtrar por nombre...",
     "name": "Nombre",
     "price": "Precio",
+    "currency": "Moneda",
+    "initialQuantity": "Cantidad inicial",
+    "adjustBy": "Cantidad a ajustar",
     "quantity": "Cantidad",
-    "quantityOnHand": "Cantidad Disponible",
-    "initialQuantity": "Cantidad Inicial",
     "threshold": "Umbral",
-    "actions": "Acciones",
-    "lowStock": "¡Stock Bajo!",
     "adjust": "Ajustar",
-    "reserve": "Reservar",
-    "release": "Liberar",
-    "empty": "No se encontraron ítems"
+    "adjustStock": "Ajustar stock",
+    "empty": "No hay artículos disponibles"
   },
-
   "common": {
+    "actions": "Acciones",
     "cancel": "Cancelar",
-    "save": "Guardar"
+    "save": "Guardar",
+    "error": "Ocurrió un error"
   }
 }

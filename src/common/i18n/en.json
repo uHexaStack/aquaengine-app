@@ -12,21 +12,23 @@
   "inventory": {
     "reload": "Reload",
     "newItem": "New Item",
+    "filterByName": "Filter by name...",
     "name": "Name",
     "price": "Price",
     "quantity": "Quantity",
-    "quantityOnHand": "Quantity On Hand",
+    "currency": "Currency",
     "initialQuantity": "Initial Quantity",
+    "adjustBy": "Adjust by",
     "threshold": "Threshold",
-    "actions": "Actions",
-    "lowStock": "Low Stock!",
     "adjust": "Adjust",
-    "reserve": "Reserve",
-    "release": "Release",
-    "empty": "No items found"
+    "adjustStock": "Adjust Stock",
+    "empty": "No items available"
   },
+
   "common": {
+    "actions": "Actions",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "error": "An error occurred"
   }
 }
