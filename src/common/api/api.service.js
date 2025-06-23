@@ -10,7 +10,7 @@ const ApiService = {
         axios.interceptors.request.use(config => {
                 const token = getToken();
                 if (token)
-                    config.headers.Authorization = `Bearer ${token}`;
+                    config.headers.Authorization = `Bearer ${getToken()}`;
                 return config;
             },
             error => {
@@ -34,9 +34,8 @@ const ApiService = {
     },
 
     get(resource, slug = "") {
-        return axios.get(`${resource}/${slug}`).catch(error => {
-            throw new Error(`[API] ApiService ${error}`);
-        });
+        const url = slug ? `${resource}/${slug}` : resource;
+        return axios.get(url);
     },
 
     post(resource, params) {
