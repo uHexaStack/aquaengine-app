@@ -3,7 +3,6 @@ import {useAuthStore} from '@/features/auth/application/stores/useAuthStore';
 
 export default {
   name: "MainLayout",
-
   data() {
     return {
       isEnglish: true,
@@ -21,7 +20,6 @@ export default {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
-
     logout() {
       const authStore = useAuthStore();
       authStore.clearAuth();
@@ -77,6 +75,9 @@ export default {
       </transition>
     </nav>
   </header>
+  <main class="w-full max-w-4xl">
+    <router-view/>
+  </main>
 </template>
 
 <style scoped>

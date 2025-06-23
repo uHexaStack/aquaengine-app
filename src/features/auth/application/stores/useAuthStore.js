@@ -1,7 +1,7 @@
 import {defineStore} from "pinia";
 
-import JwtService from "@/common/services/jwt.service.js";
-import ApiService from "@/common/services/api.service.js";
+import JwtService from "@features/auth/infrastructure/services/jwt.service.js";
+import ApiService from "@common/api/api.service.js";
 
 import {SignInUseCase} from "@/features/auth/application/usecases/SignInUseCase.js";
 import {SignUpUseCase} from "@/features/auth/application/usecases/SignUpUseCase.js";

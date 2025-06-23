@@ -5,9 +5,18 @@ import authRoutes from '@/features/auth/presentation/router.js'
 import homeRoutes from '@/features/home/presentation/router.js'
 
 import MainLayout from "@/layout/MainLayout.vue";
+import AuthLayout from "@/layout/AuthLayout.vue";
 
 const routes = [
-    ...authRoutes,
+
+    {
+        path: '/auth',
+        component: AuthLayout,
+        children: [
+            ...authRoutes,
+        ]
+    },
+
 
     {
         path: '/',

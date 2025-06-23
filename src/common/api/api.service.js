@@ -1,6 +1,6 @@
 import axios from "axios";
 import {API_URL} from "@/common/config/config.js";
-import JwtService from "@/common/services/jwt.service.js";
+import { getToken } from "@features/auth/infrastructure/services/jwt.service.js";
 
 const ApiService = {
     init() {
@@ -8,7 +8,7 @@ const ApiService = {
 
         // Request interceptor to add JWT token to headers
         axios.interceptors.request.use(config => {
-                const token = JwtService.getToken();
+                const token = getToken();
                 if (token)
                     config.headers.Authorization = `Bearer ${token}`;
                 return config;
@@ -20,7 +20,7 @@ const ApiService = {
     },
 
     setHeader() {
-        axios.defaults.headers.common["Authorization"] = `Token ${JwtService.getToken()}`;
+        axios.defaults.headers.common["Authorization"] = `Token ${getToken()}`;
     },
 
     clearHeader() {

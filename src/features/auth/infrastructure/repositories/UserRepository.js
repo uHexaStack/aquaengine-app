@@ -1,22 +1,20 @@
 import {IUserRepository} from "@/features/auth/domain/repositories/IUserRepository.js";
-import ApiService from "@/common/services/api.service.js";
-import JwtService from "@/common/services/jwt.service.js";
+import AuthApiService from "@/features/auth/infrastructure/api/auth.api.js";
+import { saveToken } from "@features/auth/infrastructure/services/jwt.service.js";
 
 export class UserRepository extends IUserRepository {
+    async signIn({username, password}) {
+        const response = await AuthApiService.signIn({username, password});
 
-    async signIn({ username, password }) {
-        const response = await ApiService.post(
-            "authentication/sign-in", { username, password });
+        const {id, token} = response.data;
+       saveToken(token);
 
-        const { id, token } = response.data;
-        JwtService.saveToken(token);
-
-        return { id, username, token };
+        return {id, username, token};
     }
 
     async signUp(data) {
-        const response = await ApiService.post(
-            "authentication/sign-up", data);
+        const response =
+            await AuthApiService.signUp(data);
         return response.data;
     }
 }

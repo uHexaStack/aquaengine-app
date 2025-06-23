@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from "./router";
 import i18n from '@/common/i18n'
-import ApiService from "@/common/services/api.service.js";
+import ApiService from "@common/api/api.service.js";
 
 ApiService.init();
 
