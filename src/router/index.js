@@ -3,6 +3,7 @@ import { useAuthStore } from "@/features/auth/application/stores/useAuthStore.js
 
 import authRoutes from '@/features/auth/presentation/router.js'
 import homeRoutes from '@/features/home/presentation/router.js'
+import inventoryRoutes from '@/features/inventory/presentation/router.js'
 
 import MainLayout from "@/layout/MainLayout.vue";
 import AuthLayout from "@/layout/AuthLayout.vue";
@@ -24,6 +25,7 @@ const routes = [
         meta: { requiresAuth: true },
         children: [
             ...homeRoutes,
+            ...inventoryRoutes,
         ]
     },
 
