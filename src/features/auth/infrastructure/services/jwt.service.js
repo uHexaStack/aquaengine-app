@@ -12,7 +12,6 @@ export const destroyToken = () => {
     window.localStorage.removeItem(ID_TOKEN_KEY);
 };
 
-// Function to parse JWT and extract payload
 function parseJwt(token) {
     try {
         const payload = token.split('.')[1];
@@ -22,11 +21,16 @@ function parseJwt(token) {
     }
 }
 
-// Function to get user ID from JWT
 export const getUserId = () => {
     const token = getToken();
     const data = token && parseJwt(token);
     return data?.sub || null;
 };
 
-export default { getToken, saveToken, destroyToken, getUserId };
+export const getUserRole = () => {
+    const token = getToken();
+    const data = token && parseJwt(token);
+    return data?.role || null;
+};
+
+export default { getToken, saveToken, destroyToken, getUserId, getUserRole };

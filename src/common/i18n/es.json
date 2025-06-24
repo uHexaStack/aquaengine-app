@@ -1,33 +1,70 @@
 {
-  "logout": "Cerrar sesión",
-
   "home": {
     "inventory": "Inventario",
-    "orders": "Órdenes",
-    "payments": "Pagos",
-    "notifications": "Notificaciones",
-    "profile": "Perfil"
+    "orders": "Órdenes"
   },
-
+  "catalog": {
+    "title": "Catálogo",
+    "order": "Realizar pedido",
+    "filterByName": "Filtrar por nombre",
+    "sortPriceAsc": "Precio: menor a mayor",
+    "sortPriceDesc": "Precio: mayor a menor",
+    "addedToCart": "Producto agregado al carrito"
+  },
+  "cart": {
+    "title": "Carrito",
+    "product": "Producto",
+    "qty": "Cantidad",
+    "price": "Precio",
+    "total": "Total",
+    "checkout": "Finalizar compra",
+    "shippingAddress": "Dirección de envío",
+    "addressStreet": "Calle y número",
+    "addressCity": "Ciudad",
+    "addressState": "Estado/Provincia",
+    "addressPostal": "Código Postal",
+    "addressCountry": "País",
+    "errorMissingAddress": "Por favor completa todos los campos de dirección",
+    "empty": "El carrito está vacío",
+    "errorDifferentCurrency": "Todos los productos deben estar en la misma moneda"
+  },
   "inventory": {
-    "reload": "Recargar",
-    "newItem": "Nuevo Producto",
-    "filterByName": "Filtrar por nombre...",
+    "newItem": "Nuevo ítem",
+    "adjustStock": "Ajustar stock",
+    "reserve": "Reservar",
+    "release": "Liberar reserva",
     "name": "Nombre",
     "price": "Precio",
     "currency": "Moneda",
     "initialQuantity": "Cantidad inicial",
-    "adjustBy": "Cantidad a ajustar",
-    "quantity": "Cantidad",
     "threshold": "Umbral",
     "adjust": "Ajustar",
-    "adjustStock": "Ajustar stock",
-    "empty": "No hay artículos disponibles"
+    "filterByName": "Filtrar por nombre",
+    "reload": "Recargar",
+    "empty": "No hay elementos"
+  },
+  "orders": {
+    "myOrders": "Mis órdenes",
+    "newOrder": "Nueva orden",
+    "orderDetail": "Detalle de orden",
+    "status": "Estado",
+    "shippingAddress": "Dirección de envío",
+    "productId": "ID de producto",
+    "quantity": "Cantidad",
+    "unitPrice": "Precio unitario",
+    "id": "ID",
+    "total": "Total",
+    "cancel": "Cancelar",
+    "addItem": "Agregar ítem"
   },
   "common": {
-    "actions": "Acciones",
+    "remove": "Eliminar",
     "cancel": "Cancelar",
+    "close": "Cerrar",
     "save": "Guardar",
-    "error": "Ocurrió un error"
+    "back": "Volver",
+    "actions": "Acciones",
+    "view": "Ver",
+    "error": "Ha ocurrido un error"
   }
 }

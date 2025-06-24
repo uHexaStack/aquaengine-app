@@ -4,6 +4,10 @@ export class IInventoryRepository {
         throw new Error("getAllItems() method not implemented");
     }
 
+    static getAllForCatalog() {
+        throw new Error("getAllForCatalog() method not implemented");
+    }
+
     static createInventoryItem(payload) {
         throw new Error("createInventoryItem() method not implemented");
     }

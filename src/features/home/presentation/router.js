@@ -13,14 +13,16 @@ export default [
         meta: { requiresAuth: true },
     },
 
-   /*
-
     {
         path: "/orders",
         name: "Orders",
-        component: () => import("@/features/order/presentation/views/OrderListView.vue"),
+        component: () => import("@/features/orders/presentation/views/OrderListView.vue"),
         meta: { requiresAuth: true },
     },
+
+   /*
+
+
 
     {
         path: "/payments",

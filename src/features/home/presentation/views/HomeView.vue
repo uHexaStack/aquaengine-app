@@ -1,77 +1,68 @@
 <script>
+import {useAuthStore} from "@/features/auth/application/stores/useAuthStore.js";
+
 export default {
   name: "DashboardView",
+  setup() {
+    const auth = useAuthStore();
+    return {auth};
+  }
 };
 </script>
 
 <template>
   <div class="dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8 w-full">
-    <!-- Inventory -->
-    <router-link to="/inventory" class="feature__item">
+    <!-- Inventario: solo para proveedores -->
+    <router-link
+        v-if="auth.role === 'ROLE_MACHINERY_PROVIDER'"
+        to="/inventory"
+        class="feature__item"
+    >
       <div class="feature__card p-6 shadow rounded-lg hover:shadow-lg transition">
         <div class="feature__content flex flex-col items-center">
-          <img
-              src="@/assets/images/inventory-logo.png"
-              alt="inventory-icon"
-              class="feature__icon h-16 w-16 mb-4"
-          />
+          <img src="@/assets/images/inventory-logo.png" alt="inventory-icon" class="h-16 w-16 mb-4"/>
           <span class="text-lg font-medium">{{ $t("home.inventory") }}</span>
         </div>
       </div>
     </router-link>
 
-    <!-- Order -->
-    <router-link to="/orders" class="feature__item">
+    <!-- Catálogo (global): solo para compañías pesqueras -->
+    <router-link
+        v-if="auth.role === 'ROLE_FISHING_COMPANY'"
+        to="/catalog"
+        class="feature__item"
+    >
       <div class="feature__card p-6 shadow rounded-lg hover:shadow-lg transition">
         <div class="feature__content flex flex-col items-center">
-          <img
-              src="@/assets/images/orders-logo.png"
-              alt="orders-icon"
-              class="feature__icon h-16 w-16 mb-4"
-          />
+          <img src="@/assets/images/inventory-logo.png" alt="catalog-icon" class="h-16 w-16 mb-4"/>
+          <span class="text-lg font-medium">{{ $t("catalog.title") }}</span>
+        </div>
+      </div>
+    </router-link>
+
+    <!-- Órdenes: solo para compañías pesqueras -->
+    <router-link
+        v-if="auth.role === 'ROLE_FISHING_COMPANY'"
+        to="/orders"
+        class="feature__item"
+    >
+      <div class="feature__card p-6 shadow rounded-lg hover:shadow-lg transition">
+        <div class="feature__content flex flex-col items-center">
+          <img src="@/assets/images/orders-logo.png" alt="orders-icon" class="h-16 w-16 mb-4"/>
           <span class="text-lg font-medium">{{ $t("home.orders") }}</span>
         </div>
       </div>
     </router-link>
 
-    <!-- Payments -->
-    <router-link to="/payments" class="feature__item">
+    <router-link
+        v-if="auth.role === 'ROLE_FISHING_COMPANY'"
+        to="/cart"
+        class="feature__item"
+    >
       <div class="feature__card p-6 shadow rounded-lg hover:shadow-lg transition">
         <div class="feature__content flex flex-col items-center">
-          <img
-              src="@/assets/images/payments-logo.webp"
-              alt="payments-icon"
-              class="feature__icon h-16 w-20 mb-4"
-          />
-          <span class="text-lg font-medium">{{ $t("home.payments") }}</span>
-        </div>
-      </div>
-    </router-link>
-
-    <!-- Notifications -->
-    <router-link to="/notifications" class="feature__item">
-      <div class="feature__card p-6 shadow rounded-lg hover:shadow-lg transition">
-        <div class="feature__content flex flex-col items-center">
-          <img
-              src="@/assets/images/notification-logo.webp"
-              alt="notifications-icon"
-              class="feature__icon h-16 w-16 mb-4"
-          />
-          <span class="text-lg font-medium">{{ $t("home.notifications") }}</span>
-        </div>
-      </div>
-    </router-link>
-
-    <!-- Perfiles -->
-    <router-link to="/profiles" class="feature__item">
-      <div class="feature__card p-6 shadow rounded-lg hover:shadow-lg transition">
-        <div class="feature__content flex flex-col items-center">
-          <img
-              src="@/assets/images/profile-logo.png"
-              alt="profile-icon"
-              class="feature__icon h-16 w-16 mb-4"
-          />
-          <span class="text-lg font-medium">{{ $t("home.profile") }}</span>
+          <img src="@/assets/images/cart-logo.webp" alt="orders-icon" class="h-16 w-16 mb-4"/>
+          <span class="text-lg font-medium">{{ $t("home.orders") }}</span>
         </div>
       </div>
     </router-link>

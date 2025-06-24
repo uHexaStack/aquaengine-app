@@ -1,34 +1,70 @@
 {
-  "logout": "Logout",
-
   "home": {
     "inventory": "Inventory",
-    "orders": "Orders",
-    "payments": "Payments",
-    "notifications": "Notifications",
-    "profile": "Profile"
+    "orders": "Orders"
   },
-
+  "catalog": {
+    "title": "Catalog",
+    "order": "Place order",
+    "filterByName": "Filter by name",
+    "sortPriceAsc": "Price: Low to High",
+    "sortPriceDesc": "Price: High to Low",
+    "addedToCart": "Product added to cart"
+  },
+  "cart": {
+    "title": "Cart",
+    "product": "Product",
+    "qty": "Quantity",
+    "price": "Price",
+    "total": "Total",
+    "checkout": "Checkout",
+    "shippingAddress": "Shipping Address",
+    "addressStreet": "Street and number",
+    "addressCity": "City",
+    "addressState": "State/Province",
+    "addressPostal": "Postal Code",
+    "addressCountry": "Country",
+    "errorMissingAddress": "Please fill in all address fields",
+    "empty": "Your cart is empty",
+    "errorDifferentCurrency": "All items must use the same currency"
+  },
   "inventory": {
-    "reload": "Reload",
-    "newItem": "New Item",
-    "filterByName": "Filter by name...",
+    "newItem": "New item",
+    "adjustStock": "Adjust stock",
+    "reserve": "Reserve",
+    "release": "Release reservation",
     "name": "Name",
     "price": "Price",
-    "quantity": "Quantity",
     "currency": "Currency",
-    "initialQuantity": "Initial Quantity",
-    "adjustBy": "Adjust by",
+    "initialQuantity": "Initial quantity",
     "threshold": "Threshold",
     "adjust": "Adjust",
-    "adjustStock": "Adjust Stock",
-    "empty": "No items available"
+    "filterByName": "Filter by name",
+    "reload": "Reload",
+    "empty": "No items"
   },
-
-  "common": {
-    "actions": "Actions",
+  "orders": {
+    "myOrders": "My Orders",
+    "newOrder": "New Order",
+    "orderDetail": "Order Detail",
+    "status": "Status",
+    "shippingAddress": "Shipping Address",
+    "productId": "Product ID",
+    "quantity": "Quantity",
+    "unitPrice": "Unit Price",
+    "id": "ID",
+    "total": "Total",
     "cancel": "Cancel",
+    "addItem": "Add item"
+  },
+  "common": {
+    "remove": "Remove",
+    "cancel": "Cancel",
+    "close": "Close",
     "save": "Save",
+    "back": "Back",
+    "actions": "Actions",
+    "view": "View",
     "error": "An error occurred"
   }
 }

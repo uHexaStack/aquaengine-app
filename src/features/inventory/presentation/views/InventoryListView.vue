@@ -1,3 +1,114 @@
+<script>
+import {useInventoryStore} from '@/features/inventory/application/stores/useInventoryStore.js';
+import InventoryForm from '@/features/inventory/presentation/components/InventoryForm.vue';
+
+export default {
+  name: 'InventoryListView',
+  components: {InventoryForm},
+
+  data() {
+    return {
+      store: useInventoryStore(),
+      error: null,
+      loading: false,
+      showForm: false,
+      currentItem: null,
+      page: 1,
+      rowsPerPage: 5,
+      filterName: ''
+    };
+  },
+
+  computed: {
+    safeItems() {
+      return Array.isArray(this.store.items) ? this.store.items : [];
+    },
+    filteredItems() {
+      if (!this.filterName) return this.safeItems;
+      const filter = this.filterName.toLowerCase();
+      return this.safeItems.filter(item =>
+          item.name?.toLowerCase().includes(filter)
+      );
+    },
+    paginatedItems() {
+      const start = (this.page - 1) * this.rowsPerPage;
+      return this.filteredItems.slice(start, start + this.rowsPerPage);
+    },
+    totalPages() {
+      return Math.max(1, Math.ceil(this.filteredItems.length / this.rowsPerPage));
+    }
+  },
+
+  methods: {
+    async fetchAll() {
+      this.loading = true;
+      try {
+        this.error = null;
+        await this.store.fetchAllItems();
+      } catch (err) {
+        this.error = err.message || this.$t('common.error');
+      } finally {
+        this.loading = false;
+      }
+    },
+    openCreateForm() {
+      this.currentItem = {mode: 'create'};
+      this.showForm = true;
+    },
+    openActionForm(item, mode) {
+      this.currentItem = {...item, mode};
+      this.showForm = true;
+    },
+    closeForm() {
+      this.showForm = false;
+      this.currentItem = null;
+    },
+    async handleCreateItem(formData) {
+      const amount = Number(formData.price);
+      const payload = {
+        name: formData.name,
+        price: {
+          amount: Number.isInteger(amount) && amount > 0 ? amount : 1,
+          currency: formData.currency || 'USD'
+        },
+        quantityOnHand: Math.max(0, Math.floor(Math.abs(Number(formData.initialQuantity)))),
+        threshold: Math.max(0, Math.floor(Math.abs(Number(formData.threshold))))
+      };
+      try {
+        await this.store.createItem(payload);
+        this.closeForm();
+        await this.fetchAll();
+        this.page = 1;
+      } catch (err) {
+        this.error = err.message || this.$t('common.error');
+      }
+    },
+    async handleSave(id, payload) {
+      try {
+        if (this.currentItem.mode === 'adjust') {
+          await this.store.adjustItemStock(id, payload.adjustBy);
+        }
+        this.closeForm();
+        await this.fetchAll();
+      } catch (err) {
+        this.error = err.message || this.$t('common.error');
+      }
+    },
+    goToPage(p) {
+      if (p >= 1 && p <= this.totalPages) this.page = p;
+    },
+    handleFilterInput() {
+      this.page = 1;
+    }
+  },
+
+  mounted() {
+    this.fetchAll();
+  }
+};
+</script>
+
+
 <template>
   <div class="p-4 bg-gray-50">
     <!-- Header Actions -->
@@ -115,115 +226,6 @@
   </div>
 </template>
 
-<script>
-import { useInventoryStore } from '@/features/inventory/application/stores/useInventoryStore.js';
-import InventoryForm from '@/features/inventory/presentation/components/InventoryForm.vue';
-
-export default {
-  name: 'InventoryListView',
-  components: { InventoryForm },
-
-  data() {
-    return {
-      store: useInventoryStore(),
-      error: null,
-      loading: false,
-      showForm: false,
-      currentItem: null,
-      page: 1,
-      rowsPerPage: 5,
-      filterName: ''
-    };
-  },
-
-  computed: {
-    safeItems() {
-      return Array.isArray(this.store.items) ? this.store.items : [];
-    },
-    filteredItems() {
-      if (!this.filterName) return this.safeItems;
-      const filter = this.filterName.toLowerCase();
-      return this.safeItems.filter(item =>
-          item.name?.toLowerCase().includes(filter)
-      );
-    },
-    paginatedItems() {
-      const start = (this.page - 1) * this.rowsPerPage;
-      return this.filteredItems.slice(start, start + this.rowsPerPage);
-    },
-    totalPages() {
-      return Math.max(1, Math.ceil(this.filteredItems.length / this.rowsPerPage));
-    }
-  },
-
-  methods: {
-    async fetchAll() {
-      this.loading = true;
-      try {
-        this.error = null;
-        await this.store.fetchAllItems();
-      } catch (err) {
-        this.error = err.message || this.$t('common.error');
-      } finally {
-        this.loading = false;
-      }
-    },
-    openCreateForm() {
-      this.currentItem = { mode: 'create' };
-      this.showForm = true;
-    },
-    openActionForm(item, mode) {
-      this.currentItem = { ...item, mode };
-      this.showForm = true;
-    },
-    closeForm() {
-      this.showForm = false;
-      this.currentItem = null;
-    },
-    async handleCreateItem(formData) {
-      const amount = Number(formData.price);
-      const payload = {
-        name: formData.name,
-        price: {
-          amount: Number.isInteger(amount) && amount > 0 ? amount : 1,
-          currency: formData.currency || 'USD'
-        },
-        quantityOnHand: Math.max(0, Math.floor(Math.abs(Number(formData.initialQuantity)))),
-        threshold: Math.max(0, Math.floor(Math.abs(Number(formData.threshold))))
-      };
-      try {
-        await this.store.createItem(payload);
-        this.closeForm();
-        await this.fetchAll();
-        this.page = 1;
-      } catch (err) {
-        this.error = err.message || this.$t('common.error');
-      }
-    },
-    async handleSave(id, payload) {
-      try {
-        if (this.currentItem.mode === 'adjust') {
-          await this.store.adjustItemStock(id, payload.adjustBy);
-        }
-        this.closeForm();
-        await this.fetchAll();
-      } catch (err) {
-        this.error = err.message || this.$t('common.error');
-      }
-    },
-    goToPage(p) {
-      if (p >= 1 && p <= this.totalPages) this.page = p;
-    },
-    handleFilterInput() {
-      this.page = 1;
-    }
-  },
-
-  mounted() {
-    this.fetchAll();
-  }
-};
-</script>
 
 <style scoped>
 /* Mantener btn-elegant para compatibilidad */
@@ -237,8 +239,9 @@ export default {
   cursor: pointer;
   transition: background-color 0.2s, box-shadow 0.2s;
 }
+
 .btn-elegant:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #90cdf4, 0 2px 8px 0 rgba(0,0,0,0.08);
+  box-shadow: 0 0 0 2px #90cdf4, 0 2px 8px 0 rgba(0, 0, 0, 0.08);
 }
 </style>

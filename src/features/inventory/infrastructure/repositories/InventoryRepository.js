@@ -7,6 +7,10 @@ export class InventoryRepository extends IInventoryRepository {
         return await InventoryApiService.getAll();
     }
 
+    async getAllForCatalog() {
+        return await InventoryApiService.getAllForCatalog();
+    }
+
     async createInventoryItem(payload) {
         return await InventoryApiService.create(payload);
     }

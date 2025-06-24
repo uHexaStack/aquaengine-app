@@ -15,6 +15,7 @@ export default defineConfig({
             '@features': path.resolve(__dirname, 'src/features'),
             '@layouts': path.resolve(__dirname, 'src/layouts'),
             '@inventory': path.resolve(__dirname, 'src/features/inventory'),
+            '@orders': path.resolve(__dirname, 'src/features/orders'),
         }
     },
     define: {

@@ -9,6 +9,7 @@ import { ReleaseInventoryUseCase } from "@/features/inventory/application/usecas
 import { GetItemQuantityUseCase } from "@/features/inventory/application/usecases/GetItemQuantityUseCase.js";
 import { GetLowStockItemUseCase } from "@/features/inventory/application/usecases/GetLowStockItemUseCase.js";
 import { GetAllLowStockItemsUseCase } from "@/features/inventory/application/usecases/GetAllLowStockItemsUseCase.js";
+import { GetAllCatalogItemsUseCase } from "@/features/inventory/application/usecases/GetAllCatalogItemsUseCase.js";
 
 const repository = new InventoryRepository();
 const createInventoryItemUseCase = new CreateInventoryItemUseCase(repository);
@@ -19,6 +20,7 @@ const releaseInventoryStockUseCase   = new ReleaseInventoryUseCase(repository);
 const getItemQuantityUseCase    = new GetItemQuantityUseCase(repository);
 const getLowStockItemUseCase    = new GetLowStockItemUseCase(repository);
 const getAllLowStockItemsUseCase = new GetAllLowStockItemsUseCase(repository);
+const getAllCatalogItemsUseCase = new GetAllCatalogItemsUseCase(repository);
 
 export const useInventoryStore = defineStore("inventory", {
     state: () => ({
@@ -26,6 +28,7 @@ export const useInventoryStore = defineStore("inventory", {
         quantities: {},
         lowStockItemsMap: {},
         allLowStockItems: [],
+        catalogItems: [],
         loading: false,
         error: null,
     }),
@@ -36,7 +39,19 @@ export const useInventoryStore = defineStore("inventory", {
 
             try {
                 this.error = null;
-                this.items = await getAllInventoryItemsUseCase.execute();
+                this.lines = await getAllInventoryItemsUseCase.execute();
+            } catch (e) {
+                this.error = e.message;
+            } finally {
+                this.loading = false;
+            }
+        },
+
+        async fetchCatalogItems() {
+            this.loading = true;
+            try {
+                this.error = null;
+                this.catalogItems = await getAllCatalogItemsUseCase.execute();
             } catch (e) {
                 this.error = e.message;
             } finally {
@@ -47,7 +62,7 @@ export const useInventoryStore = defineStore("inventory", {
         async createItem(itemData) {
             try {
                 const newItem = await createInventoryItemUseCase.execute(itemData);
-                this.items.push(newItem);
+                this.lines.push(newItem);
                 return newItem;
             } catch (e) {
                 this.error = e.message;

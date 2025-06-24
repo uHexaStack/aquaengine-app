@@ -15,6 +15,7 @@ export const useAuthStore = defineStore("auth", {
     state: () => ({
         token: JwtService.getToken() || null,
         userId: JwtService.getUserId() || null,
+        role: JwtService.getUserRole() || null,
         user: null,
         error: null,
     }),
@@ -28,6 +29,7 @@ export const useAuthStore = defineStore("auth", {
             this.token = token;
             JwtService.saveToken(token);
             this.userId = JwtService.getUserId();
+            this.role = JwtService.getUserRole();
             ApiService.setHeader();
         },
 
@@ -35,6 +37,7 @@ export const useAuthStore = defineStore("auth", {
             this.user = null;
             this.token = null;
             this.userId = null;
+            this.role = null;
             JwtService.destroyToken();
             ApiService.clearHeader();
         },
@@ -52,13 +55,13 @@ export const useAuthStore = defineStore("auth", {
             }
         },
 
-        async signIn({username, password}) {
+        async signIn(credentials) {
             try {
                 this.error = null;
-                const {id, token, username: user} =
-                    await signInUseCase.execute({username, password});
+                const { id, token, username: user, role } =
+                    await signInUseCase.execute(credentials);
                 this.setToken(token);
-                this.user = {id, username: user};
+                this.user = { id, username: user };
             } catch (e) {
                 this.error = e.message;
                 throw e;
