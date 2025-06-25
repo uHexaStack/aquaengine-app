@@ -39,7 +39,8 @@ export const useInventoryStore = defineStore("inventory", {
 
             try {
                 this.error = null;
-                this.lines = await getAllInventoryItemsUseCase.execute();
+                this.items = await getAllInventoryItemsUseCase.execute();
+                console.log("UseInventoryStore: ", this.items);
             } catch (e) {
                 this.error = e.message;
             } finally {
@@ -62,7 +63,7 @@ export const useInventoryStore = defineStore("inventory", {
         async createItem(itemData) {
             try {
                 const newItem = await createInventoryItemUseCase.execute(itemData);
-                this.lines.push(newItem);
+                this.items.push(newItem);
                 return newItem;
             } catch (e) {
                 this.error = e.message;
