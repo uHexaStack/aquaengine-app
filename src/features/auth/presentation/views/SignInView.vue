@@ -55,7 +55,7 @@ export default {
 <template>
   <div class="sign-in__container">
     <div class="sign-in__form">
-      <h1 class="title">Sign In</h1>
+      <h1 class="title font-bold">Sign In</h1>
       <p class="p-fluid mb-5">
         Please enter the required information to sign in.
       </p>

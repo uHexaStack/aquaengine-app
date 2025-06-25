@@ -30,14 +30,14 @@ export default {
         { model: "password", label: "Password", type: "password" },
         { model: "firstName", label: "First Name", type: "text" },
         { model: "lastName", label: "Last Name", type: "text" },
-        { model: "ruc", label: "RUC", type: "text" },
+        { model: "ruc", label: "RUC", type: "text", numeric: true },
         { model: "contactEmail", label: "Contact Email", type: "email" },
-        { model: "contactPhone", label: "Contact Phone", type: "text" },
+        { model: "contactPhone", label: "Contact Phone", type: "text", numeric: true},
         { model: "companyName", label: "Company Name", type: "text" },
         { model: "companyStreet", label: "Company Street", type: "text" },
         { model: "companyCity", label: "Company City", type: "text" },
-        { model: "postalCode", label: "Postal Code", type: "text" },
-        { model: "companyNumber", label: "Company Number", type: "text" },
+        { model: "postalCode", label: "Postal Code", type: "text", numeric: true },
+        { model: "companyNumber", label: "Company Number", type: "text", numeric: true },
         { model: "companyCountry", label: "Company Country", type: "text" },
         {
           model: "role",
@@ -63,6 +63,23 @@ export default {
   },
 
   methods: {
+    restrictToNumbers(field) {
+      let value = this.form[field].replace(/\D/g, '');
+
+      if (field === 'ruc') {
+        value = value.slice(0, 11);
+      }
+
+      else if (field === 'contactPhone' || field === 'companyNumber') {
+        value = value.slice(0, 9);
+      }
+      else if (field === 'postalCode') {
+        value = value.slice(0, 5);
+      }
+
+
+      this.form[field] = value;
+    },
     validate() {
       this.fields.forEach(field => {
         this.errors[field.model] = this.form[field.model]
@@ -122,6 +139,9 @@ export default {
                   :id="field.model"
                   v-model="form[field.model]"
                   :type="field.type"
+                  :inputmode="field.numeric ? 'numeric' : undefined"
+                  :pattern="field.numeric ? '[0-9]*' : undefined"
+                  @input="field.numeric ? restrictToNumbers(field.model) : null"
                   class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   :class="{ 'border-red-500': errors[field.model] }"
               />
@@ -153,6 +173,7 @@ export default {
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .sign-up__container {

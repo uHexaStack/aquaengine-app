@@ -11,8 +11,8 @@ export default {
 </script>
 
 <template>
-  <main class="w-full max-w-4xl">
-    <router-view/>
+  <main class="min-h-screen w-screen flex justify-center items-center bg-gray-50">
+    <router-view />
   </main>
 </template>
 
