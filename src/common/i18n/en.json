@@ -41,7 +41,8 @@
     "adjust": "Adjust",
     "filterByName": "Filter by name",
     "reload": "Reload",
-    "empty": "No items"
+    "empty": "No items",
+    "quantity": "Quantity"
   },
   "orders": {
     "myOrders": "My Orders",

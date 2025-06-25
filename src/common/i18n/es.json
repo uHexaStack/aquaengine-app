@@ -41,7 +41,8 @@
     "adjust": "Ajustar",
     "filterByName": "Filtrar por nombre",
     "reload": "Recargar",
-    "empty": "No hay elementos"
+    "empty": "No hay elementos",
+    "quantity": "Cantidad"
   },
   "orders": {
     "myOrders": "Mis órdenes",
