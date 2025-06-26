@@ -39,8 +39,21 @@ export default {
         </div>
       </div>
     </router-link>
-
     <!-- Órdenes: solo para compañías pesqueras -->
+    <router-link
+        v-if="auth.role === 'ROLE_FISHING_COMPANY'"
+        to="/cart"
+        class="feature__item"
+    >
+      <div class="feature__card p-6 shadow rounded-lg hover:shadow-lg transition">
+        <div class="feature__content flex flex-col items-center">
+          <img src="@/assets/images/cart-logo.webp" alt="orders-icon" class="h-16 w-16 mb-4"/>
+          <span class="text-lg font-medium">{{ $t("home.orders") }}</span>
+        </div>
+      </div>
+    </router-link>
+
+
     <router-link
         v-if="auth.role === 'ROLE_FISHING_COMPANY'"
         to="/orders"
@@ -54,18 +67,7 @@ export default {
       </div>
     </router-link>
 
-    <router-link
-        v-if="auth.role === 'ROLE_FISHING_COMPANY'"
-        to="/cart"
-        class="feature__item"
-    >
-      <div class="feature__card p-6 shadow rounded-lg hover:shadow-lg transition">
-        <div class="feature__content flex flex-col items-center">
-          <img src="@/assets/images/cart-logo.webp" alt="orders-icon" class="h-16 w-16 mb-4"/>
-          <span class="text-lg font-medium">{{ $t("home.orders") }}</span>
-        </div>
-      </div>
-    </router-link>
+
   </div>
 </template>
 
